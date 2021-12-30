@@ -1,0 +1,86 @@
+﻿@model Animals_Project_WEB.Models.Category_Select
+@{
+    ViewBag.Title = "Catelog";
+}
+<h1 id="Name_Page">Catelog</h1>
+<div>
+    <a id="Pages" asp-action="Index" asp-controller="Home"><h3>Back</h3></a>
+</div>
+@{ int[] id = new int[3]; id[0] = 1; id[1] = 2; id[2] = 3;
+    string[] categor_Name = new string[3]; categor_Name[0] = "Reptiles"; categor_Name[1] = "Poultry"; categor_Name[2] = "Marine";
+    int Index_num = 0;
+}
+<div>
+    @using (Html.BeginForm("Category_Id", "Catelog", FormMethod.Post))
+    {
+    <div align="center" >
+        <h3 align="center" >
+            Please select a category
+            <select onChange="this.form.submit()" asp-for="@Model.CategorySelect">
+                @foreach (var itemcb in id)
+                {
+                    <option value="@itemcb">@categor_Name[Index_num++]</option>
+                }
+            </select>
+        </h3>
+    </div>
+    }
+</div>
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+            <h4></h4>
+        </div>
+        <div id="title_Entity" align="center" class="col-4">
+            <br />
+            <h2>Portrait</h2>
+            <br />
+        </div>
+        <div id="title_Entity" align="center" class="col-2">
+            <br />
+            <h2>Name</h2>
+            <br />
+        </div>
+        <div id="title_Entity" align="center" class="col-4 ">
+            <h2>More Details and Comments</h2>
+        </div>
+        <div class="col-1">
+            <h4></h4>
+        </div>
+    </div>
+    <br />
+    @foreach (var animal in my_Repository.Get_Animals())
+    {
+        if (ViewBag.category_Id == null) ViewBag.category_Id = 1;
+        if (animal.CategoryId == ViewBag.category_Id)
+        {
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-1">
+                    <h4></h4>
+                </div>
+                <div align="center" class="col-4">
+                    <div> <img src="~/Images/@animal.Picture_Name" height="110" width="110" /></div>
+                </div>
+                <div align="center" class="col-2">
+                    <br />
+                    <h4 id="Entity">@animal.Name</h4>
+                </div>
+                <div align="center" class="col-4">
+                    <br />
+                    <a asp-action="Details_Comments" asp-route-animal_Id="@animal.AnimalId"> <button type="button" class="btn btn-info">Details and Comments</button></a>
+                </div>
+                <div class="col-1">
+                    <h4></h4>
+                </div>
+            </div>
+        }
+    }
+    <br />
+    <br />
+    <br />
+</div>

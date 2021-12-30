@@ -1,0 +1,22 @@
+﻿#Pages {
+    color: deepskyblue;
+    text-decoration: underline;
+}
+
+#Name_Page {
+   color:aqua;
+}
+
+#Entity {
+    color: saddlebrown;
+}
+
+#title_Entity {
+    background-color: aquamarine;
+}
+#Details_Titles {
+    color: greenyellow;
+}
+#Details {
+    background-color: greenyellow;
+}

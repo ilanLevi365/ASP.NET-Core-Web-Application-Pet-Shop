@@ -1,0 +1,110 @@
+﻿@model Animals_Project_WEB.Models.New_Comment
+@{
+    ViewBag.Title = "Details_Comments";
+}
+
+<br />
+@foreach (var item in my_Repository.Get_Animals())
+{
+    if (item.AnimalId == ViewBag.animal_Id)
+    {
+        <div align="center">
+            <img src="~/Images/@item.Picture_Name" height="260" width="260" />
+        </div>
+        <h1 id="Name_Page">Catelog</h1>
+        <div>
+            <a id="Pages" asp-action="Index"><h3>Back</h3></a>
+        </div>
+        <br />
+        <br />
+       
+        <div class="container">
+            <br />
+            <div class="row">
+                <div class="col">
+                    <h4></h4>
+                </div>
+                <div class="col">
+                    <h4></h4>
+                </div>
+                <div align="left" class="col-4">
+                    <div>
+                        @using (Html.BeginForm("Add_Comment", "Catelog"))
+                        {
+                            <input type="submit" value="Submit Comment" class="btn badge-primary" />
+                            @Html.EditorFor(model => model.NewComment)
+                            @Html.ValidationMessageFor(model => model.NewComment, "", new { @class = "text-danger" })
+                        }
+                        <br />
+                        <br />
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div id="Details_Titles" align="right" class="col-3">
+                    <h3>Name >>></h3>
+                </div>
+                <div align="left" class="col-5">
+                    <h4 id="Details">@item.Name</h4>
+                </div>
+                <div class="col-4">
+                    <h3>Comments on the animal:</h3>
+                    <br />
+                    @{int num = 0; }
+                    @foreach (var comment in item.Comments)
+                    {
+                        num++;
+                        <div class="row">
+                            <div id="Details" align="left" class="col">
+                                <h4>@num.  @comment.Coment</h4>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div id="Details_Titles" align="right" class="col-3">
+                    <h3>Age >>></h3>
+                </div>
+                <div align="left" class="col-5">
+                    <h4 id="Details">@item.Age</h4>
+                </div>
+                <div align="left" class="col-4">
+                    <h4></h4>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div id="Details_Titles" align="right" class="col-3">
+                    <h3>Description >>></h3>
+                </div>
+                <div align="left" class="col-5">
+                    <h4 id="Details">@item.Description</h4>
+                </div>
+                <div align="left" class="col-4">
+                    <h4></h4>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div id="Details_Titles" align="right" class="col-3">
+                    <h4>Category Name >>></h4>
+                </div>
+                <div align="left" class="col-5">
+                    <h4 id="Details">@item.Category.Name</h4>
+                </div>
+                <div align="left" class="col-4">
+                    <h4></h4>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+        </div>
+    }
+}                    

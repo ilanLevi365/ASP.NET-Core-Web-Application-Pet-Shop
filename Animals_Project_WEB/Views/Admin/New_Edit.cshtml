@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "New_Edit";
+}
+<h1 id="Name_Page">ADMIN</h1>
+<div>
+    <a id="Pages" asp-action="Index" asp-controller="Admin"><h3>Back</h3></a>
+</div>
+<br />
+<br />
+<br />
+
+@using (Html.BeginForm("Edit", "Admin"))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <br />
+                <h2></h2>
+            </div>
+            <div align="left" id="title_Entity" class="col-auto">
+                <br />
+                @Html.EditorForModel()
+                <br />
+            </div>
+            <div class="col ">
+                <h2></h2>
+            </div>
+        </div>
+        <br />
+        <div align="center">
+            <br />
+            <input style="width:100px" type="submit" value="Edit" class="btn badge-primary" />
+            <br />
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
+}

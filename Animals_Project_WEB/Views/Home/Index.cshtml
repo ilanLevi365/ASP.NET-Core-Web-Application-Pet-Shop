@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<h1 id="Name_Page">Home</h1>
+<br />
+<div style="color:red" align="center"><h1>The two with the most responses are:</h1></div>
+<br />
+<br />
+<div class="container">
+    <div class="row">
+        <div id="title_Entity" align="center" class="col">
+            <br />
+            <h2>Portrait</h2>
+        </div>
+        <div id="title_Entity" align="right" class="col ">
+            <br />
+            <h2>Name</h2>
+        </div>
+        <div id="title_Entity" align="center" class="col-7">
+            <br />
+            <h2>Description</h2>
+        </div>
+        <div id="title_Entity" align="center" class="col ">
+            <h2>Number of comments</h2>
+        </div>
+    </div>
+    <br />
+    @foreach (var animal in my_Repository.Get_Animals())
+    {
+        if (animal.AnimalId == ViewBag.Popular1[0])
+        {
+            <br />
+            <div class="row">
+                <div align="center" class="col">
+                    <div> <img src="~/Images/@animal.Picture_Name" height="115" width="115" /></div>
+                </div>
+                <div align="center" class="col">
+                    <h4 id="Entity">@animal.Name</h4>
+                </div>
+                <div class="col-7">
+                    <h4 id="Entity">@animal.Description</h4>
+                </div>
+                <div align="center" class="col">
+                    <h4 id="Entity">@ViewBag.Popular1[1]</h4>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+        }
+        if (animal.AnimalId == ViewBag.Popular2[0])
+        {
+            <br />
+            <div class="row">
+                <div align="center" class="col">
+                    <div> <img src="~/Images/@animal.Picture_Name" height="115" width="115" /></div>
+                </div>
+                <div align="center" class="col">
+                    <h4 id="Entity">@animal.Name</h4>
+                </div>
+                <div class="col-7">
+                    <h4 id="Entity">@animal.Description</h4>
+                </div>
+                <div align="center" class="col">
+                    <h4 id="Entity">@ViewBag.Popular2[1]</h4>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+        }
+    }
+</div>

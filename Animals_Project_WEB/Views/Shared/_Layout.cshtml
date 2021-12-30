@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/styles/StyleSheet.css" rel="stylesheet" />
+    <link href="~/styles/vendor.min.css" rel="stylesheet" />
+    <script src="~/Scripts/vendor.min.js"></script>
+</head>
+<body>
+    <div style="background-color:lightcyan">
+        <div style="background-color :black"> <h1 align="center" style="color:yellow">".מָה רַבּוּ מַעֲשֶׂיךָ יְהוָה כֻּלָּם בְּחָכְמָה עָשִׂיתָ מָלְאָה הָאָרֶץ קִנְיָנֶךָ"</h1></div>
+       <br />
+
+        <div align="center"> <img src="~/Images/Logo_Img.jpg" height="200" width="800" /></div>
+
+        <a asp-action="Index" asp-controller="Home"><h3 id="Pages">HOME</h3></a>
+        <a asp-action="Index" asp-controller="Catelog"><h3 id="Pages">Catelog</h3></a>
+        <a asp-action="Index" asp-controller="Admin"><h3 id="Pages">Admin</h3></a>
+        <br />
+    </div>
+    @RenderBody()
+</body>
+</html>

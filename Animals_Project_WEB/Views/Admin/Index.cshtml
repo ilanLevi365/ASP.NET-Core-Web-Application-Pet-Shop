@@ -1,0 +1,114 @@
+﻿@model Animals_Project_WEB.Models.Category_Select
+@{
+    ViewBag.Title = "ADMIN";
+}
+
+<h1 id="Name_Page">ADMIN</h1>
+<div>
+    <a id="Pages" asp-action="Index" asp-controller="Home"><h3>Back</h3></a>
+</div>
+<br />
+<br />
+@{ int[] id = new int[3]; id[0] = 1; id[1] = 2; id[2] = 3;
+    string[] categor_Name = new string[3]; categor_Name[0] = "Reptiles"; categor_Name[1] = "Poultry"; categor_Name[2] = "Marine";
+    int Index_num = 0;
+}
+<br />
+<br />
+<br />
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div align="center" class="col-5">
+            <div align="left">
+                @using (Html.BeginForm("Category_Id", "Admin", FormMethod.Post))
+                {
+                    <div align="center">
+                        <h3 align="center">
+                            Please select a category
+                            <select onChange="this.form.submit()" asp-for="@Model.CategorySelect">
+                                @foreach (var itemcb in id)
+                                {
+                                    <option value="@itemcb">@categor_Name[Index_num++]</option>
+                                }
+                            </select>
+                        </h3>
+                    </div>
+                }
+            </div>
+        </div>
+        <div align="right" class="col ">
+            <h2></h2>
+        </div>
+        <div align="center" class="col">
+            <h2></h2>
+        </div>
+        <div align="center" class="col ">
+            <div align="right" class="col-1">
+                <a asp-action="Add_Animal"> <button type="button" style="width:110PX" class="btn btn-primary">Add New</button></a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div id="title_Entity" align="center" class="col">
+            <br />
+            <h2>Portrait</h2>
+            <br />
+        </div>
+        <div id="title_Entity" align="right" class="col ">
+            <br />
+            <h2>Name</h2>
+            <br />
+        </div>
+        <div id="title_Entity" align="right" class="col ">
+            <br />
+            <h2>Age</h2>
+            <br />
+        </div>
+        <div id="title_Entity" align="center" class="col-7">
+            <br />
+            <h2>Description</h2>
+            <br />
+        </div>
+        <div id="title_Entity" align="center" class="col ">
+            <br />
+            <h3>Edit/Delete</h3>
+            <br />
+        </div>
+    </div>
+    <br />
+    @foreach (var animal in my_Repository.Get_Animals())
+    {
+        if (animal.CategoryId == ViewBag.category_Id || ViewBag.category_Id == null)
+        {
+            if (ViewBag.category_Id == null) ViewBag.category_Id = 1;
+            <br />
+            <div class="row">
+                <div align="center" class="col">
+                    <div> <img src="~/Images/@animal.Picture_Name" height="115" width="115" /></div>
+                </div>
+                <div align="center" class="col">
+                    <h4 id="Entity">@animal.Name</h4>
+                </div>
+                <div align="center" class="col">
+                    <h4 id="Entity">@animal.Age</h4>
+                </div>
+                <div class="col-7">
+                    <h4 id="Entity">@animal.Description</h4>
+                </div>
+                <div align="center" class="col">
+                    <h4 id="Entity">
+                        <a asp-action="New_Edit" asp-route-id="@animal.AnimalId"> <button type="button" style="width:110PX" class="btn btn-info">Edit</button></a>
+                        <br />
+                        <br />
+                        <a asp-action="Delete" asp-route-id="@animal.AnimalId"> <button type="button" style="width:110PX" class="btn btn-info">Delete</button></a>
+                    </h4>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+        }
+    }
+</div>
